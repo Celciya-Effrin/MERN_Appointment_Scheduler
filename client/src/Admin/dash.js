@@ -16,28 +16,33 @@ const AdminDash = () => {
     navigate('/appointment');
   };
 
-  useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/appointments`);
-        const allAppointments = response.data;
+useEffect(() => {
+  const fetchAppointments = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/appointments`);
+      
+      // ✅ Defensive coding to ensure response is always an array
+      const allAppointments = Array.isArray(response.data)
+        ? response.data
+        : response.data.appointments || [];
 
-        const today = new Date().toISOString().split('T')[0];
+      const today = new Date().toISOString().split('T')[0];
 
-        const todayList = allAppointments.filter(appt => appt.date === today);
-        const others = allAppointments.filter(appt => appt.date !== today);
+      const todayList = allAppointments.filter(appt => appt.date === today);
+      const others = allAppointments.filter(appt => appt.date !== today);
 
-        others.sort((a, b) => new Date(a.date) - new Date(b.date));
+      others.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-        setTodayAppointments(todayList);
-        setOtherAppointments(others);
-      } catch (error) {
-        console.error('Error fetching appointments:', error);
-      }
-    };
+      setTodayAppointments(todayList);
+      setOtherAppointments(others);
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+    }
+  };
 
-    fetchAppointments();
-  }, []);
+  fetchAppointments();
+}, []);
+
 
   const renderAppointmentCard = (appt, key) => (
     <Card
