@@ -20,10 +20,6 @@ app.use(cors({
   credentials: true
 }));
 
-app.use((req, res, next) => {
-  console.log("Request received from origin:", req.headers.origin);
-  next();
-});
 
 
 // ✅ Connect routes
