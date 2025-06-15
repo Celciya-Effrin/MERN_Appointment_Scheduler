@@ -14,7 +14,11 @@ dotenv.config();
 const app = express()
 
 app.use(express.json());
-app.use(cors())
+app.use(cors({
+  origin: "https://mern-appointment-scheduler.vercel.app", // Frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 // ✅ Connect routes
 app.use("/api", authRoutes);
@@ -30,7 +34,7 @@ app.use('/api/appointments', require('./routes/appointments'));
 
 
 app.listen(process.env.PORT,() =>{
-    console.log(`server is running on port ${process.env.PORT}`)
+    console.log(`server is running on port ${process.env.REACT_APP_FRONTEND_URL}`)
 })
 
 app.get("/", (req, res) => {
