@@ -5,6 +5,10 @@ const bcrypt= require("bcrypt")
 const dotenv = require("dotenv")
 const path = require("path");
 
+const authRoutes = require('./routes/auth');
+const appointmentRoutes = require('./routes/appointments');
+const userRoutes = require('./routes/users'); // if separated
+
 //dotenv connect backend and frontend by express
 dotenv.config();
 const app = express()
@@ -21,9 +25,6 @@ app.use((req, res, next) => {
   next();
 });
 
-const authRoutes = require('./routes/auth');
-const appointmentRoutes = require('./routes/appointments');
-const userRoutes = require('./routes/users'); // if separated
 
 // ✅ Connect routes
 app.use("/api", authRoutes);
