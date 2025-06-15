@@ -15,7 +15,7 @@ const app = express()
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://mern-appointment-scheduler.vercel.app", // Frontend
+  origin: "mern-appointment-scheduler-jxufs0uin-celciya-effrins-projects.vercel.app", // Frontend
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -34,7 +34,7 @@ app.use('/api/appointments', require('./routes/appointments'));
 
 
 app.listen(process.env.PORT,() =>{
-    console.log(`server is running on port ${process.env.PORT}`)
+    console.log(`server is running on port ${process.env.REACT_APP_FRONTEND_URL}`)
 })
 
 app.get("/", (req, res) => {
