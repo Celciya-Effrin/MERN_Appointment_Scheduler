@@ -15,7 +15,7 @@ const app = express()
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://mern-appointment-scheduler-jxufs0uin-celciya-effrins-projects.vercel.app", // Frontend
+  origin: "https://mern-appointment-scheduler.vercel.app/", // Frontend
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
