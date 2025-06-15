@@ -32,3 +32,7 @@ app.use('/api/appointments', require('./routes/appointments'));
 app.listen(process.env.PORT,() =>{
     console.log(`server is running on port ${process.env.PORT}`)
 })
+
+app.get("/", (req, res) => {
+  res.send("✅ MERN Billing Backend is running!");
+});
