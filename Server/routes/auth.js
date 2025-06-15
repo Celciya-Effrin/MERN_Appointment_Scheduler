@@ -81,7 +81,7 @@ router.get('/verify/:token', async (req, res) => {
     await user.save();
 
     // Redirect to frontend login page
-    res.redirect(process.env.FRONTEND_URL + '/login'); // 👈 this line redirects
+    res.redirect(process.env.REACT_APP_FRONTEND_URL + '/login'); // 👈 this line redirects
   } catch (err) {
     console.error('Verification error:', err);
     res.status(500).send('Server error');

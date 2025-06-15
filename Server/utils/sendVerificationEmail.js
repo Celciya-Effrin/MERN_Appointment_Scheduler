@@ -13,7 +13,7 @@ const sendVerificationEmail = async (email, token) => {
     },
   });
 
-  const verificationLink = `${process.env.BACKEND_URL}/api/verify/${token}`; // Will now work correctly
+  const verificationLink = `${process.env.REACT_APP_BACKEND_URL}/api/verify/${token}`; // Will now work correctly
 
   const mailOptions = {
     from: '"Your App" <your_email@gmail.com>',
